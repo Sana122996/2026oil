@@ -13,7 +13,8 @@
                 yMax: 1200,
                 yUnit: '万桶/日',
                 titleInit: '中东六大产油国产量暴跌',
-                titleRevealed: '中东产油国3月产量减超800万桶/日',
+                // 修改点 3：卡片一点击后的新标题
+                titleRevealed: '中东六大产油国3月产量减少超800万桶/日',
                 data: [
                     { name: "沙特", flag: "🇸🇦", valBase: 1011.2, valActual: 779.9 },
                     { name: "伊拉克", flag: "🇮🇶", valBase: 418.8, valActual: 162.5 },
@@ -28,7 +29,8 @@
                 yMax: 1600,
                 yUnit: '万桶/日',
                 titleInit: '欧亚多国炼油产出受波及',
-                titleRevealed: '欧亚炼油产出受波及，日韩严重',
+                // 修改点 3：卡片二点击后的新标题
+                titleRevealed: '欧亚多国炼油产出受波及，日韩首当其冲',
                 data: [
                     { name: "中国", flag: "🇨🇳", valBase: 1545, valActual: 1447 },
                     { name: "印度", flag: "🇮🇳", valBase: 570, valActual: 578 },
@@ -83,7 +85,6 @@
                 const sign = diff > 0 ? '+' : '';
 
                 const instructionTop = baseH + 10; 
-                // Only add instruction group to the first column
                 const instructionHTML = i === 0 ? `
                 <div class="instruction-group" style="bottom: ${instructionTop - 70}px;">
                     <svg class="hand-drawn-arrow arrow-up" viewbox="0 0 40 50">
@@ -292,9 +293,7 @@
             justify-content: center;
             margin-bottom: 0.75rem;
         }
-        
-        /* 增加了对 img 的支持 */
-        .logo-container svg, .logo-container img {
+        .logo-container img {
             width: 120px;
             height: auto;
         }
@@ -535,9 +534,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            gap: 8px;
+            /* 修改点 1：让图例可以换行展示 */
+            flex-wrap: wrap; 
+            gap: 10px 12px;
             font-size: 0.62rem;
             padding-bottom: 4px;
             white-space: nowrap;
@@ -646,11 +645,9 @@
     <div class="page-header">
         <span class="material-symbols-outlined hero-decoration oil-icon">oil_barrel</span>
         <span class="material-symbols-outlined hero-decoration globe-icon">public</span>
-        
         <div class="logo-container">
             <img src="容器 178.svg" alt="金十数据" />
         </div>
-        
         <h1>美以伊冲突对石油产业的<br/>破坏有多严重？</h1>
         <p>数据来源：欧佩克月报</p>
     </div>
@@ -680,7 +677,7 @@
         </div>
     </div>
 
-    <div class="chart-container" id="chart-refinery" style="margin-top: 40px;">
+    <div class="chart-container" id="chart-refinery" style="margin-top: 12px;">
         <div class="chart-header">
             <h3 class="dynamic-subtitle">欧亚多国炼油产出受波及</h3>
         </div>
