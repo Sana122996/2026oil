@@ -13,7 +13,7 @@
                 yMax: 1200,
                 yUnit: '万桶/日',
                 titleInit: '中东六大产油国产量暴跌',
-                titleRevealed: '中东六大产油国3月产量减少超800万桶/日',
+                titleRevealed: '中东六大产油国3月产量<br/>减少超800万桶/日',
                 data: [
                     { name: "沙特", flag: "🇸🇦", valBase: 1011.2, valActual: 779.9 },
                     { name: "伊拉克", flag: "🇮🇶", valBase: 418.8, valActual: 162.5 },
@@ -28,7 +28,7 @@
                 yMax: 1600,
                 yUnit: '万桶/日',
                 titleInit: '欧亚多国炼油产出受波及',
-                titleRevealed: '欧亚多国炼油产出受波及，日韩首当其冲',
+                titleRevealed: '欧亚多国炼油产出受波及，<br/>日韩首当其冲',
                 data: [
                     { name: "中国", flag: "🇨🇳", valBase: 1545, valActual: 1447 },
                     { name: "印度", flag: "🇮🇳", valBase: 570, valActual: 578 },
@@ -177,7 +177,7 @@
                 if (!hasMoved || isRevealed) return;
                 isRevealed = true;
                 revealBtn.classList.remove('active');
-                subtitle.innerText = config.titleRevealed;
+                subtitle.innerHTML = config.titleRevealed;
                 subtitle.style.color = "#c64233";
                 
                 config.data.forEach((d, i) => {
@@ -191,7 +191,7 @@
             resetBtn.onclick = () => {
                 isRevealed = false;
                 hasMoved = false;
-                subtitle.innerText = config.titleInit;
+                subtitle.innerHTML = config.titleInit;
                 subtitle.style.color = "#222";
                 revealBtn.classList.remove('active');
                 
@@ -327,6 +327,14 @@
             margin: 0;
             color: #222;
             transition: color 0.3s;
+            font-weight: bold;
+        }
+
+        .chart-unit-title {
+            font-size: 0.65rem;
+            color: #666;
+            margin-left: 10px;
+            margin-bottom: 5px;
             font-weight: bold;
         }
 
@@ -528,7 +536,6 @@
             padding-top: 16px;
         }
 
-        /* 修改点 1：图例分两行展示的 CSS */
         .legend {
             display: flex;
             flex-direction: column;
@@ -643,15 +650,14 @@
             border-color: #1a1a1a transparent transparent transparent;
         }
 
-        /* 修改点 2：图表水印样式 */
         .chart-watermark {
             position: absolute;
             bottom: 5px;
-            right: 0px;
+            right: 5px;
             width: 70px;
-            opacity: 0.06;
+            opacity: 0.15; 
             pointer-events: none;
-            z-index: 0;
+            z-index: 100; 
         }
     </style>
 </head>
@@ -671,6 +677,9 @@
         <div class="chart-header">
             <h3 class="dynamic-subtitle">中东六大产油国产量暴跌</h3>
         </div>
+        
+        <div class="chart-unit-title">原油产量（万桶/日）</div>
+        
         <div class="chart-area">
             <div class="w-full absolute inset-0" id="grid-oil"></div>
             <div class="columns-container" id="body-oil"></div>
@@ -679,9 +688,9 @@
         <div class="controls">
             <div class="legend">
                 <div class="legend-row">
-                    <div class="legend-item"><div class="legend-color-base"></div> 2月产量</div>
+                    <div class="legend-item"><div class="legend-color-base"></div> 2月</div>
+                    <div class="legend-item"><div class="legend-color-pink"></div> 3月</div>
                     <div class="legend-item"><div class="legend-dashed-line"></div> 预测</div>
-                    <div class="legend-item"><div class="legend-color-pink"></div> 3月实际</div>
                 </div>
                 <div class="legend-row">
                     <div class="legend-item">
@@ -701,6 +710,9 @@
         <div class="chart-header">
             <h3 class="dynamic-subtitle">欧亚多国炼油产出受波及</h3>
         </div>
+        
+        <div class="chart-unit-title">炼厂产出（万桶/日）</div>
+        
         <div class="chart-area">
             <div class="w-full absolute inset-0" id="grid-refinery"></div>
             <div class="columns-container" id="body-refinery"></div>
@@ -709,9 +721,9 @@
         <div class="controls">
             <div class="legend">
                 <div class="legend-row">
-                    <div class="legend-item"><div class="legend-color-base"></div> 2月产出</div>
+                    <div class="legend-item"><div class="legend-color-base"></div> 2月</div>
+                    <div class="legend-item"><div class="legend-color-pink"></div> 3月</div>
                     <div class="legend-item"><div class="legend-dashed-line"></div> 预测</div>
-                    <div class="legend-item"><div class="legend-color-pink"></div> 3月实际</div>
                 </div>
                 <div class="legend-row">
                     <div class="legend-item">
