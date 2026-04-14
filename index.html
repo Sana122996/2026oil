@@ -110,7 +110,7 @@
             height: var(--chart-height);
             border-bottom: 2px solid #000;
             margin-bottom: 60px;
-            margin-left: 55px; /* Increased for Y-axis labels */
+            margin-left: 55px; 
             margin-right: 15px;
             display: flex;
             box-sizing: border-box;
@@ -124,7 +124,7 @@
         }
         .y-axis-label {
             position: absolute;
-            left: -58px; /* Offset adjusted for better spacing */
+            left: -58px; 
             transform: translateY(-50%);
             font-size: 0.7rem;
             color: #666;
@@ -175,6 +175,7 @@
             height: 100%;
             cursor: ns-resize;
             user-select: none;
+            touch-action: none;
         }
 
         .base-bar {
@@ -251,6 +252,12 @@
             pointer-events: none;
             transition: opacity 0.4s;
             z-index: 99;
+            animation: pulse-instruction 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-instruction {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
         }
 
         .hand-drawn-arrow {
@@ -312,7 +319,7 @@
             margin-left: 4px;
         }
 
-        .buttons { 
+        .buttons {
             display: grid; 
             grid-template-columns: 1fr 1fr; 
             gap: 12px;
