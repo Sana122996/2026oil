@@ -13,7 +13,6 @@
                 yMax: 1200,
                 yUnit: '万桶/日',
                 titleInit: '中东六大产油国产量暴跌',
-                // 修改点 3：卡片一点击后的新标题
                 titleRevealed: '中东六大产油国3月产量减少超800万桶/日',
                 data: [
                     { name: "沙特", flag: "🇸🇦", valBase: 1011.2, valActual: 779.9 },
@@ -29,7 +28,6 @@
                 yMax: 1600,
                 yUnit: '万桶/日',
                 titleInit: '欧亚多国炼油产出受波及',
-                // 修改点 3：卡片二点击后的新标题
                 titleRevealed: '欧亚多国炼油产出受波及，日韩首当其冲',
                 data: [
                     { name: "中国", flag: "🇨🇳", valBase: 1545, valActual: 1447 },
@@ -530,17 +528,23 @@
             padding-top: 16px;
         }
 
+        /* 修改点 1：图例分两行展示的 CSS */
         .legend {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            /* 修改点 1：让图例可以换行展示 */
-            flex-wrap: wrap; 
-            gap: 10px 12px;
+            gap: 8px;
             font-size: 0.62rem;
             padding-bottom: 4px;
             white-space: nowrap;
         }
+        .legend-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
         .legend-item { display: flex; align-items: center; gap: 4px; }
         .legend-color-base { width: 12px; height: 12px; background-color: var(--gray-base); }
         .legend-dashed-line { width: 16px; height: 2px; border-top: 2px dashed #000; }
@@ -638,6 +642,17 @@
             border-style: solid;
             border-color: #1a1a1a transparent transparent transparent;
         }
+
+        /* 修改点 2：图表水印样式 */
+        .chart-watermark {
+            position: absolute;
+            bottom: 5px;
+            right: 0px;
+            width: 70px;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 0;
+        }
     </style>
 </head>
 <body>
@@ -659,16 +674,21 @@
         <div class="chart-area">
             <div class="w-full absolute inset-0" id="grid-oil"></div>
             <div class="columns-container" id="body-oil"></div>
+            <img src="水印.png" class="chart-watermark" alt="水印" />
         </div>
         <div class="controls">
             <div class="legend">
-                <div class="legend-item"><div class="legend-color-base"></div> 2月产量</div>
-                <div class="legend-item"><div class="legend-dashed-line"></div> 预测</div>
-                <div class="legend-item"><div class="legend-color-pink"></div> 3月实际</div>
-                <div class="legend-item">
-                    <span class="legend-tag up">+涨</span><span class="legend-tag down">-跌</span> (较上月%)
+                <div class="legend-row">
+                    <div class="legend-item"><div class="legend-color-base"></div> 2月产量</div>
+                    <div class="legend-item"><div class="legend-dashed-line"></div> 预测</div>
+                    <div class="legend-item"><div class="legend-color-pink"></div> 3月实际</div>
                 </div>
-                <button class="btn-toggle-guess">不显示我的预测</button>
+                <div class="legend-row">
+                    <div class="legend-item">
+                        <span class="legend-tag up">+涨</span><span class="legend-tag down">-跌</span> (较上月%)
+                    </div>
+                    <button class="btn-toggle-guess">不显示我的预测</button>
+                </div>
             </div>
             <div class="buttons">
                 <button class="btn-reset">重置</button>
@@ -684,16 +704,21 @@
         <div class="chart-area">
             <div class="w-full absolute inset-0" id="grid-refinery"></div>
             <div class="columns-container" id="body-refinery"></div>
+            <img src="水印.png" class="chart-watermark" alt="水印" />
         </div>
         <div class="controls">
             <div class="legend">
-                <div class="legend-item"><div class="legend-color-base"></div> 2月产出</div>
-                <div class="legend-item"><div class="legend-dashed-line"></div> 预测</div>
-                <div class="legend-item"><div class="legend-color-pink"></div> 3月实际</div>
-                <div class="legend-item">
-                    <span class="legend-tag up">+涨</span><span class="legend-tag down">-跌</span> (较上月%)
+                <div class="legend-row">
+                    <div class="legend-item"><div class="legend-color-base"></div> 2月产出</div>
+                    <div class="legend-item"><div class="legend-dashed-line"></div> 预测</div>
+                    <div class="legend-item"><div class="legend-color-pink"></div> 3月实际</div>
                 </div>
-                <button class="btn-toggle-guess">不显示我的预测</button>
+                <div class="legend-row">
+                    <div class="legend-item">
+                        <span class="legend-tag up">+涨</span><span class="legend-tag down">-跌</span> (较上月%)
+                    </div>
+                    <button class="btn-toggle-guess">不显示我的预测</button>
+                </div>
             </div>
             <div class="buttons">
                 <button class="btn-reset">重置</button>
